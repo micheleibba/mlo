@@ -212,6 +212,7 @@ $flash = getFlashMessage();
                                     <th>Stato</th>
                                     <th>Data</th>
                                     <th>Nome</th>
+                                    <th>Cellulare</th>
                                     <th>Argomento</th>
                                     <th>Messaggio</th>
                                     <th>Azioni</th>
@@ -228,6 +229,7 @@ $flash = getFlashMessage();
                                     </td>
                                     <td class="text-nowrap small"><?= formatDate($msg['created_at']) ?></td>
                                     <td><?= e($msg['name'] ?: '—') ?></td>
+                                    <td class="text-nowrap small"><?= e($msg['phone'] ?? '—') ?></td>
                                     <td><span class="badge bg-secondary"><?= e($msg['topic']) ?></span></td>
                                     <td><?= e(truncate($msg['message'], 80)) ?></td>
                                     <td>

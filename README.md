@@ -1,10 +1,10 @@
-# Scrivimi - Portale Cittadino
+# Scrivimi - Maria Laura Orrù
 
-Un sito web semplice e curato per la comunicazione diretta tra cittadini e amministrazione comunale.
+Un sito web semplice e curato per la comunicazione diretta con i cittadini.
 
 ## Caratteristiche
 
-- **Homepage single-page** con form per scrivere al sindaco
+- **Homepage single-page** con form per scrivere messaggi
 - **Q&A pubbliche** - domande e risposte pubblicate con consenso
 - **Programma 2021** - checklist trasparente delle promesse elettorali
 - **Proposte cittadine** - co-programmazione partecipativa
@@ -171,4 +171,4 @@ Tabelle:
 
 ## Licenza
 
-Progetto sviluppato per il Comune di Elmas.
+Progetto sviluppato per Maria Laura Orrù.

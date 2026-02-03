@@ -190,13 +190,15 @@ function getAreas(): array
 function getProgramAreas(): array
 {
     return [
-        'Partecipazione',
-        'Ambiente',
-        'Sicurezza',
-        'Urbanistica',
-        'Giovani',
-        'Cultura',
-        'Economia',
+        'Partecipazione e Digitale',
+        'Sicurezza e Ambiente',
+        'Spazi Pubblici',
+        'Urbanistica e Viabilità',
+        'Città Metropolitana',
+        'Mobilità Sostenibile',
+        'Economia Locale',
+        'Politiche Sociali',
+        'Cultura e Istruzione',
     ];
 }
 

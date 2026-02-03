@@ -11,8 +11,8 @@ ini_set('display_errors', '0');
 ini_set('log_errors', '1');
 
 // Site configuration
-define('SITE_NAME', 'Comune di Elmas - Scrivimi');
-define('SITE_URL', 'http://localhost:8000'); // Change in production
+define('SITE_NAME', 'Maria Laura Orrù - Scrivimi');
+define('SITE_URL', 'https://mlo.nubelab.it');
 
 // Timezone
 date_default_timezone_set('Europe/Rome');
@@ -22,7 +22,7 @@ define('DB_PATH', __DIR__ . '/../data/site.sqlite');
 
 // Admin access - CHANGE THESE IN PRODUCTION!
 // The secret key required in URL to access admin login: admin/login.php?k=YOUR_SECRET_KEY
-define('ADMIN_SECRET_KEY', 'cambiami_chiave_segreta_lunga_2024');
+define('ADMIN_SECRET_KEY', '123a9fa01bc19007a79f99ff6eea176a');
 
 // Admin credentials - CHANGE PASSWORD IN PRODUCTION!
 // To generate a new hash: echo password_hash('your_new_password', PASSWORD_DEFAULT);
@@ -30,15 +30,15 @@ define('ADMIN_USER', 'admin');
 define('ADMIN_PASS_HASH', password_hash('admin123', PASSWORD_DEFAULT)); // CHANGE THIS!
 
 // Email configuration
-define('MAIL_FROM', 'sindaco@comune.elmas.ca.it');
-define('MAIL_FROM_NAME', 'Sindaco di Elmas');
+define('MAIL_FROM', 'marialauraorru.elezioni@gmail.com');
+define('MAIL_FROM_NAME', 'Maria Laura Orrù');
 
-// SMTP Configuration - CONFIGURE WITH YOUR PROVIDER!
-define('SMTP_HOST', 'smtp.example.com');
-define('SMTP_USER', 'user@example.com');
-define('SMTP_PASS', 'your_smtp_password');
+// SMTP Configuration - Gmail
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_USER', 'marialauraorru.elezioni@gmail.com');
+define('SMTP_PASS', 'wxvmxcvqkiyljqns');
 define('SMTP_PORT', 587);
-define('SMTP_SECURE', 'tls'); // 'tls' or 'ssl'
+define('SMTP_SECURE', 'tls');
 
 // Rate limiting
 define('RATE_LIMIT_MESSAGES', 3); // max messages per IP

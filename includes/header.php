@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?= e($pageDescription ?? 'Scrivi al Sindaco di Elmas e ricevi una risposta.') ?>">
+    <meta name="description" content="<?= e($pageDescription ?? 'Scrivi a Maria Laura Orrù e ricevi una risposta.') ?>">
     <title><?= e($pageTitle ?? SITE_NAME) ?></title>
 
     <!-- Bootstrap 5 CSS -->

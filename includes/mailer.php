@@ -1,21 +1,42 @@
 <?php
 /**
- * Email functionality using PHPMailer
+ * Email functionality using PHPMailer (optional)
  */
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+// Check if PHPMailer is available
+$phpmailerAvailable = false;
+$autoloadPath = __DIR__ . '/../vendor/autoload.php';
 
-require_once __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoloadPath)) {
+    require_once $autoloadPath;
+    $phpmailerAvailable = class_exists('PHPMailer\PHPMailer\PHPMailer');
+}
+
 require_once __DIR__ . '/config.php';
+
+/**
+ * Check if email functionality is available
+ */
+function isEmailAvailable(): bool
+{
+    global $phpmailerAvailable;
+    return $phpmailerAvailable && SMTP_HOST !== 'smtp.example.com';
+}
 
 /**
  * Send reply email to citizen
  */
 function sendReplyEmail(string $toEmail, ?string $toName, string $questionExcerpt, string $answerText): bool
 {
-    $mail = new PHPMailer(true);
+    global $phpmailerAvailable;
+
+    // If PHPMailer is not available, log and return false
+    if (!$phpmailerAvailable) {
+        error_log('PHPMailer not installed. Run "composer install" to enable email functionality.');
+        return false;
+    }
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
     try {
         // Server settings
@@ -24,7 +45,7 @@ function sendReplyEmail(string $toEmail, ?string $toName, string $questionExcerp
         $mail->SMTPAuth   = true;
         $mail->Username   = SMTP_USER;
         $mail->Password   = SMTP_PASS;
-        $mail->SMTPSecure = SMTP_SECURE === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->SMTPSecure = SMTP_SECURE === 'ssl' ? PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS : PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = SMTP_PORT;
         $mail->CharSet    = 'UTF-8';
 
@@ -69,33 +90,33 @@ function buildEmailHtml(?string $name, string $question, string $answer): string
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-    <div style="background: linear-gradient(135deg, #0d6e6e 0%, #1a8a8a 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-        <h1 style="margin: 0; font-size: 24px;">Risposta dal Sindaco</h1>
+    <div style="background: linear-gradient(135deg, #059669 0%, #0ea5e9 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+        <h1 style="margin: 0; font-size: 24px;">Risposta da Maria Laura Orrù</h1>
     </div>
 
     <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 10px 10px;">
         <p style="margin-top: 0;">{$greeting}</p>
 
-        <p>hai ricevuto una risposta alla domanda che ci hai inviato.</p>
+        <p>hai ricevuto una risposta alla domanda che mi hai inviato.</p>
 
-        <div style="background: #fff; border-left: 4px solid #0d6e6e; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0;">
+        <div style="background: #fff; border-left: 4px solid #059669; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0;">
             <strong style="color: #666; font-size: 12px; text-transform: uppercase;">La tua domanda:</strong>
             <p style="margin: 10px 0 0 0; color: #444;">{$question}</p>
         </div>
 
-        <div style="background: #fff; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0;">
+        <div style="background: #fff; border-left: 4px solid #22c55e; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0;">
             <strong style="color: #666; font-size: 12px; text-transform: uppercase;">Risposta:</strong>
             <p style="margin: 10px 0 0 0; color: #333;">{$answer}</p>
         </div>
 
         <p style="margin-top: 30px;">Cordiali saluti,<br>
-        <strong>Il Sindaco</strong></p>
+        <strong>Maria Laura Orrù</strong></p>
 
         <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
 
         <p style="font-size: 12px; color: #888; margin-bottom: 0;">
             Questa email è stata inviata in risposta a una tua richiesta tramite il sito {$siteName}.<br>
-            I tuoi dati sono trattati nel rispetto della privacy. Per maggiori informazioni consulta la nostra informativa sul sito.
+            I tuoi dati sono trattati nel rispetto della privacy.
         </p>
     </div>
 </body>
@@ -114,7 +135,7 @@ function buildEmailPlainText(?string $name, string $question, string $answer): s
     return <<<TEXT
 {$greeting}
 
-hai ricevuto una risposta alla domanda che ci hai inviato.
+hai ricevuto una risposta alla domanda che mi hai inviato.
 
 LA TUA DOMANDA:
 {$question}
@@ -123,7 +144,7 @@ RISPOSTA:
 {$answer}
 
 Cordiali saluti,
-Il Sindaco
+Maria Laura Orrù
 
 ---
 Questa email è stata inviata in risposta a una tua richiesta tramite il sito {$siteName}.

@@ -41,7 +41,7 @@ $showSuccess = isset($_GET['sent']) && $_GET['sent'] === '1';
 $showProposalSuccess = isset($_GET['proposal']) && $_GET['proposal'] === '1';
 
 $pageTitle = SITE_NAME;
-$pageDescription = 'Scrivi al Sindaco di Elmas e ricevi una risposta personale. Trasparenza, ascolto e partecipazione.';
+$pageDescription = 'Scrivi a Maria Laura Orrù e ricevi una risposta personale. Trasparenza, ascolto e partecipazione.';
 $showNav = true;
 $basePath = '';
 
@@ -55,7 +55,7 @@ include __DIR__ . '/includes/header.php';
             <div class="col-lg-8 text-center">
                 <h1 class="hero-title">Scrivimi.</h1>
                 <p class="hero-subtitle mb-2">
-                    Raccontami un problema, una critica o un'idea per Elmas. Ti risponderò io.
+                    Raccontami un problema, una critica o un'idea. Ti risponderò io.
                 </p>
                 <p class="hero-microcopy">
                     Non sempre potrò dirti "sì". Ma ti dirò sempre la verità.
@@ -89,6 +89,11 @@ include __DIR__ . '/includes/header.php';
                     <div class="mb-3">
                         <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                         <input type="email" class="form-control" id="email" name="email" required placeholder="Per ricevere la risposta">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Cellulare <span class="text-muted fw-normal">(facoltativo)</span></label>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Es. 333 1234567">
                     </div>
 
                     <div class="mb-3">

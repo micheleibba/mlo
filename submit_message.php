@@ -33,6 +33,7 @@ if (!checkHoneypot()) {
 // Get and sanitize input
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
+$phone = preg_replace('/[^0-9+\s]/', '', trim($_POST['phone'] ?? ''));
 $topic = trim($_POST['topic'] ?? '');
 $message = trim($_POST['message'] ?? '');
 $privacy = isset($_POST['privacy']);
@@ -79,13 +80,14 @@ if (!checkRateLimit($pdo, 'messages', $ipHash, RATE_LIMIT_MESSAGES, RATE_LIMIT_W
 // Insert message
 try {
     $stmt = $pdo->prepare("
-        INSERT INTO messages (name, email, topic, message, status, created_at, ip_hash, user_agent)
-        VALUES (?, ?, ?, ?, 'new', ?, ?, ?)
+        INSERT INTO messages (name, email, phone, topic, message, status, created_at, ip_hash, user_agent)
+        VALUES (?, ?, ?, ?, ?, 'new', ?, ?, ?)
     ");
 
     $stmt->execute([
         $name ?: null,
         $email,
+        $phone ?: null,
         $topic,
         $message,
         date('c'),

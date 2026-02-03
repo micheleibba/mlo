@@ -28,12 +28,10 @@ include __DIR__ . '/includes/header.php';
                 <div class="card-body">
                     <h2 class="h5 mb-3">1. Titolare del trattamento</h2>
                     <p>
-                        Il Titolare del trattamento dei dati personali è il <strong>Comune di Elmas</strong>,
-                        con sede in [indirizzo], P.IVA/C.F. [codice fiscale].
+                        Il Titolare del trattamento dei dati personali è <strong>Maria Laura Orrù</strong>.
                     </p>
                     <p>
-                        Email: <a href="mailto:privacy@comune.elmas.ca.it">privacy@comune.elmas.ca.it</a><br>
-                        PEC: [pec@comune.elmas.ca.it]
+                        Email: <a href="mailto:info@marialauraorru.it">info@marialauraorru.it</a>
                     </p>
                 </div>
             </div>
@@ -120,7 +118,7 @@ include __DIR__ . '/includes/header.php';
                     </ul>
                     <p class="mt-3">
                         Per esercitare i tuoi diritti, scrivi a:
-                        <a href="mailto:privacy@comune.elmas.ca.it">privacy@comune.elmas.ca.it</a>
+                        <a href="mailto:info@marialauraorru.it">info@marialauraorru.it</a>
                     </p>
                 </div>
             </div>

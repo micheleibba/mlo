@@ -114,11 +114,21 @@ $flash = getFlashMessage();
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <strong>Argomento:</strong>
-                                <span class="badge bg-secondary"><?= e($message['topic']) ?></span>
+                                <strong>Cellulare:</strong>
+                                <?php if (!empty($message['phone'])): ?>
+                                <a href="tel:<?= e($message['phone']) ?>"><?= e($message['phone']) ?></a>
+                                <?php else: ?>
+                                <span class="text-muted">—</span>
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-6">
                                 <strong>Data:</strong> <?= formatDate($message['created_at']) ?>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <strong>Argomento:</strong>
+                                <span class="badge bg-secondary"><?= e($message['topic']) ?></span>
                             </div>
                         </div>
 

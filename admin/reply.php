@@ -171,6 +171,20 @@ $flash = getFlashMessage();
                                 <span><strong><?= e($message['name'] ?: 'Anonimo') ?></strong></span>
                                 <span class="badge bg-secondary"><?= e($message['topic']) ?></span>
                             </div>
+                            <div class="row mb-2 small">
+                                <div class="col-md-6">
+                                    <i class="bi bi-envelope me-1"></i>
+                                    <a href="mailto:<?= e($message['email']) ?>"><?= e($message['email']) ?></a>
+                                </div>
+                                <div class="col-md-6">
+                                    <i class="bi bi-telephone me-1"></i>
+                                    <?php if (!empty($message['phone'])): ?>
+                                    <a href="tel:<?= e($message['phone']) ?>"><?= e($message['phone']) ?></a>
+                                    <?php else: ?>
+                                    <span class="text-muted">—</span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                             <div class="p-3 bg-light rounded">
                                 <?= nl2br(e($message['message'])) ?>
                             </div>
@@ -194,6 +208,7 @@ $flash = getFlashMessage();
                             </div>
 
                             <div class="mb-3">
+                                <?php if (function_exists('isEmailAvailable') && isEmailAvailable()): ?>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="send_email"
                                            name="send_email" value="1" <?= !$message['reply_id'] ? 'checked' : '' ?>>
@@ -202,6 +217,12 @@ $flash = getFlashMessage();
                                         Invia risposta via email a <?= e($message['email']) ?>
                                     </label>
                                 </div>
+                                <?php else: ?>
+                                <div class="alert alert-warning py-2 mb-0">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    <small>Invio email non configurato. La risposta verrà salvata ma non inviata via email.</small>
+                                </div>
+                                <?php endif; ?>
                             </div>
 
                             <div class="mb-3">
