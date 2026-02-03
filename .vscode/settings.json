@@ -1,0 +1,42 @@
+{
+  "deploy.reloaded": {
+    "packages": [
+      {
+        "name": "VC code",
+        "description": "Deploy automatico su entrambi i server di sviluppo",
+        "files": ["**"],
+        "exclude": [
+          ".vscode/**",
+          "**/.git/**",
+          "node_modules/**",
+          ".env",
+          "CLAUDE.md"
+        ],
+        "targets": ["FlameNetworks"],
+        // "targets": ["FlameNetworks", "Hostinger"],
+        "deployOnSave": true
+      }
+    ],
+    "targets": [
+      {
+        "type": "ftp",
+        "name": "FlameNetworks",
+        "host": "77.83.65.83",
+        "port": 21,
+        "user": "michele_ftp_mlo",
+        "password": "l72&Wkj16",
+        "dir": "/"
+      },
+      // {
+      //   "type": "ftp",
+      //   "name": "Hostinger",
+      //   "host": "72.60.34.237",
+      //   "port": 21,
+      //   "user": "ftp_balloonmuseum_milano_prod",
+      //   "password": "aL?r5223h",
+      //   "dir": "/"
+      // }
+    ],
+    "deployOnSave": true
+  }
+}
